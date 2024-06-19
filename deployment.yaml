@@ -19,9 +19,9 @@ spec:
         image: pecarmoregistry.azurecr.io/app2:latest
         env:
         - name: EMAIL
-          value: $${{ secrets.EMAIL }}
+          value: EMAIL_SECRET_VALUE
         - name: PASSWORD
-          value: $${{ secrets.PASSWORD }}
+          value: PASSWORD_SECRET_VALUE
         ports:
         - containerPort: 80
         imagePullPolicy: Always
