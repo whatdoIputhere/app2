@@ -14,7 +14,7 @@ const cookieString = "_ga_BKQGQSWK0Z=GS1.1.1708340915.2.0.1708340925.0.0.0; _ga_
 const transporter = nodemailer.createTransport({
     service: 'Outlook',
     auth: {
-        user: 'pv19910@alunos.estgv.ipv.pt',
+        user: process.env.EMAIL,
         pass: process.env.PASSWORD
     }
 });

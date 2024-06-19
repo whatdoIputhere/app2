@@ -17,6 +17,11 @@ spec:
       containers:
       - name: app2-container
         image: pecarmoregistry.azurecr.io/app2:latest
+        env:
+        - name: EMAIL
+          value: $${{ secrets.EMAIL }}
+        - name: PASSWORD
+          value: $${{ secrets.PASSWORD }}
         ports:
         - containerPort: 80
         imagePullPolicy: Always
@@ -34,3 +39,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
+---
