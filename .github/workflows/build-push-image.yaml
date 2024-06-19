@@ -30,12 +30,6 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y.%m.%d')"
-
-      - name: Replace secrets in deployment.yaml
-        id: replaceSecrets
-        run: |
-          sed -i 's/EMAIL_SECRET_VALUE/${{ secrets.EMAIL }}/g' deployment.yaml
-          sed -i 's/PASSWORD_SECRET_VALUE/${{ secrets.PASSWORD }}/g' deployment.yaml
       
       - name: Build and push Docker image with 'latest' tag
         uses: docker/build-push-action@v5
@@ -70,6 +64,8 @@ jobs:
       
       - name: Apply deployment
         run: |
+            sed -i 's/EMAIL_SECRET_VALUE/${{ secrets.EMAIL }}/g' deployment.yaml
+            sed -i 's/PASSWORD_SECRET_VALUE/${{ secrets.PASSWORD }}/g' deployment.yaml
             az aks get-credentials --resource-group infra-rg-neu --name pecarmoaks
             kubectl apply -f deployment.yaml
             kubectl rollout restart deployment/${{ steps.repo.outputs.repo }}-deployment
