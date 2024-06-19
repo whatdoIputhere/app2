@@ -16,9 +16,9 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
     from: 'pv19910@alunos.estgv.ipv.pt',
-    to: 'pv19910@alunos.estgv.ipv.pt',
-    subject: 'TESTE SAIU NOTAS DE REDES',
-    text: 'TESTE SAIU NOTAS DE REDES'
+    to: 'pv19910@alunos.estgv.ipv.pt, pv19889@alunos.estgv.ipv.pt',
+    subject: 'SAIU NOTAS DE REDES',
+    text: 'SAIU NOTAS DE REDES'
 };
 
 oldAvalElement = `<span class="hidden sectionname">Avaliação </span><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/spacer"></div><div class="content"><h3 class="sectionname"><span><a href="https://moodle.estgv.ipv.pt/course/view.php?id=6581#section-2">Avaliação </a></span></h3><div class="section_availability"></div><div class="summary"></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-207838"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=207838"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Resultados da componente Prática 2022/2023<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-216382"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=216382"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Resultados da avaliação Prática - TP3, TP4 e TP7<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li><li class="activity label modtype_label " id="module-207836"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="contentwithoutlink "><div class="no-overflow"><div class="no-overflow"><p>De acordo com as regras de avaliação da UC de Redes de Comunicação II, o acesso à Época Normal (Frequência e Exame de Época Normal) &nbsp;implica o estudante ter avaliação &gt;=9,5 na componente prática.&nbsp;</p><p>A melhoria de classificação é permitida em época de recurso. No caso de um estudante ter aprovação na Frequência e realizar o Exame de Época Normal, será contabilizada para a classificação final em época normal, a classificação obtida no Exame de Época Normal (mesmo que inferior à obtida na Frequência).</p></div></div></div></div></div></div></li><li class="activity resource modtype_resource " id="module-207837"><div><div class="mod-indent-outer"><div class="mod-indent mod-indent-1"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=207837"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Acesso à Frequência 2024 (Provisório - Atualizado a 5/6/2024)<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li></ul></div>`;
@@ -82,11 +82,3 @@ setInterval(() => {
         console.error(error);
     });
 }, 30 * 1000);
-
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        console.error('Error sending email:', error);
-    } else {
-        console.log('Email sent:', info.response);
-    }
-});
