@@ -10,10 +10,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-console.log('Email:', process.env.EMAIL);
-console.log('Password:', process.env.PASSWORD);
-console.log('env', process.env);
-
 const mailOptions = {
     from: 'pv19910@alunos.estgv.ipv.pt',
     to: 'pv19910@alunos.estgv.ipv.pt',
@@ -28,3 +24,7 @@ transporter.sendMail(mailOptions, (error, info) => {
         console.log('Email sent:', info.response);
     }
 });
+
+setInterval(() => {
+    console.log("running");
+}, 1 * 60 * 1000);
