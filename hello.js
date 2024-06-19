@@ -16,7 +16,7 @@ console.log('env', process.env);
 
 const mailOptions = {
     from: 'pv19910@alunos.estgv.ipv.pt',
-    to: 'pv19910@alunos.estgv.ipv.pt, pv19889@alunos.estgv.ipv.pt',
+    to: 'pv19910@alunos.estgv.ipv.pt',
     subject: 'teste secrets',
     text: 'teste secrets'
 };
