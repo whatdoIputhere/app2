@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
     from: 'pv19910@alunos.estgv.ipv.pt',
-    to: 'pv19910@alunos.estgv.ipv.pt',
+    to: 'pv19910@alunos.estgv.ipv.pt, pv19889@alunos.estgv.ipv.pt',
     subject: 'SAIU NOTAS DE REDES',
     text: 'SAIU NOTAS DE REDES'
 };
