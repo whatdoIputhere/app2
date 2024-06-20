@@ -4,7 +4,7 @@ dotenv = require('dotenv');
 dotenv.config();
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-const cookieString = "_ga_MZ2C7JMSW7=GS1.2.1707085153.1.0.1707085153.0.0.0; _ga=GA1.1.950440606.1705958057; _ga_BKQGQSWK0Z=GS1.1.1707085459.1.1.1707086677.0.0.0; _ga_RKQ3S0WP1N=GS1.1.1707085459.1.1.1707086677.0.0.0; _ga_Q52M9CYF1D=GS1.1.1707085459.1.1.1707086677.0.0.0; _ga_H5M1PS4Q5B=GS1.1.1712441297.3.1.1712442590.0.0.0; MoodleSession202324=pi39cdhg0emmll2v1rqv1ter9p";
+const cookieString = "MoodleSession202324=1dp23l0676ks87bsl20emg7rjp";
 
 const transporter = nodemailer.createTransport({
     service: 'Outlook',
@@ -16,16 +16,40 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
     from: 'pv19910@alunos.estgv.ipv.pt',
-    to: 'pv19910@alunos.estgv.ipv.pt, pv19889@alunos.estgv.ipv.pt',
+    to: 'pv19910@alunos.estgv.ipv.pt',
     subject: 'SAIU NOTAS DE REDES',
     text: 'SAIU NOTAS DE REDES'
 };
 
-oldAvalElement = `<span class="hidden sectionname">Avaliação </span><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/spacer"></div><div class="content"><h3 class="sectionname"><span><a href="https://moodle.estgv.ipv.pt/course/view.php?id=6581#section-2">Avaliação </a></span></h3><div class="section_availability"></div><div class="summary"></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-207838"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=207838"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Resultados da componente Prática 2022/2023<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-216382"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=216382"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Resultados da avaliação Prática - TP3, TP4 e TP7<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li><li class="activity label modtype_label " id="module-207836"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="contentwithoutlink "><div class="no-overflow"><div class="no-overflow"><p>De acordo com as regras de avaliação da UC de Redes de Comunicação II, o acesso à Época Normal (Frequência e Exame de Época Normal) &nbsp;implica o estudante ter avaliação &gt;=9,5 na componente prática.&nbsp;</p><p>A melhoria de classificação é permitida em época de recurso. No caso de um estudante ter aprovação na Frequência e realizar o Exame de Época Normal, será contabilizada para a classificação final em época normal, a classificação obtida no Exame de Época Normal (mesmo que inferior à obtida na Frequência).</p></div></div></div></div></div></div></li><li class="activity resource modtype_resource " id="module-207837"><div><div class="mod-indent-outer"><div class="mod-indent mod-indent-1"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=207837"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Acesso à Frequência 2024 (Provisório - Atualizado a 5/6/2024)<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-218470"><div><div class="mod-indent-outer"><div class="mod-indent"></div><div><div class="activityinstance"><a class="" onclick="" href="https://moodle.estgv.ipv.pt/mod/resource/view.php?id=218470"><img src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true"><span class="instancename">Pauta Pratica RC III P3 4 7<span class="accesshide "> Ficheiro</span></span></a></div></div></div></div></li></ul></div>`;
+oldAvalElement = "";
+oldTesteElement = "";
 
-oldTesteElement = `<span class="hidden sectionname">Secção de Testes</span><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.estgv.ipv.pt/theme/image.php/klass/core/1716366919/spacer"></div><div class="content"><h3 class="sectionname"><span><a href="https://moodle.estgv.ipv.pt/course/view.php?id=6581#section-6">Secção de Testes</a></span></h3><div class="section_availability"><div class="availabilityinfo ishidden">
-    <span class="badge badge-info">Não disponível</span>
-</div></div><div class="summary"></div></div>`;
+fetch("https://moodle.estgv.ipv.pt/course/view.php?id=6581", {
+    headers: {
+        Cookie: cookieString
+    }
+}).then(response => {
+    if (response.ok) {
+        console.log("Response OK");
+        return response.text();
+    } else {
+        console.log("Response not OK");
+        throw new Error("Something went wrong");
+    }
+}).then(html => {
+    console.log("HTML fetched");
+    const dom = new JSDOM(html);
+    const newDOM = dom.window.document;
+    const newAvalElement = newDOM.querySelector('#section-2');
+    oldAvalElement = newAvalElement.innerHTML;
+    const newTesteElement = newDOM.querySelector('#section-6');
+    oldTesteElement = newTesteElement.innerHTML;
+    console.log("Old Aval Element updated");
+    console.log("Old Teste Element updated");
+}).catch(error => {
+    console.error(error);
+});
+
 
 console.log("started")
 setInterval(() => {
