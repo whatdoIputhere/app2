@@ -52,6 +52,7 @@ async function getNotifications() {
                 "title"
             ).textContent;
             let normalizedPage = normalizePage(response.data);
+            fs.writeFileSync(pageTitle + ".html", page.content);
 
             _pageInfo.push({
                 url: notification.url,
@@ -97,8 +98,8 @@ function monitor() {
                 }
                 sendEmail(page.email, `Updates made to ${pageTitle}`, page.url);
                 console.log("Page updated " + page.pageTitle);
-                fs.writeFileSync("old.html", page.content);
-                fs.writeFileSync("new.html", normalizedPageResponse);
+                fs.writeFileSync(page.pageTitle + "_old.html", page.content);
+                fs.writeFileSync(page.pageTitle + "_new.html", normalizedPageResponse);
                 page.content = normalizedPageResponse;
             } catch (error) {
                 console.error("Error processing fetch page code", error.code);
