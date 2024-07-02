@@ -55,6 +55,7 @@ async function getNotifications() {
             const regex = /Disciplina:\s*([^\-]+)\s*-/;
             console.log(pageTitle);
             console.log(pageTitle.match(regex));
+            cleanPageTitle = "aa";
             //const cleanPageTitle = pageTitle.match(regex)[1].trim();
             //console.log("Initial fetch for page " + cleanPageTitle || pageTitle);
             fs.writeFileSync(
