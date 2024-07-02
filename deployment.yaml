@@ -8,35 +8,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: app2
   template:
     metadata:
       labels:
-        app: app
+        app: app2
     spec:
       containers:
-      - name: app2-container
-        image: pecarmoregistry.azurecr.io/app2:latest
-        env:
-        - name: EMAIL
-          value: EMAIL_SECRET_VALUE
-        - name: PASSWORD
-          value: PASSWORD_SECRET_VALUE
-        ports:
-        - containerPort: 80
-        imagePullPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: app2-service
-  namespace: default
-spec:
-  type: LoadBalancer
-  selector:
-    app: app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
----
+        - name: app2-container
+          image: pecarmoregistry.azurecr.io/app2:latest
+          imagePullPolicy: Always
+          env:
+            - name: MOODLE_USER
+              value: MOODLE_USER_SECRET_VALUE
+            - name: MOODLE_PASSWORD
+              value: MOODLE_PASSWORD_SECRET_VALUE
+          ports:
+            - containerPort: 3002
