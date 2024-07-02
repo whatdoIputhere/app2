@@ -53,8 +53,10 @@ async function getNotifications() {
             ).textContent;
             let normalizedPage = normalizePage(response.data);
             const regex = /Disciplina:\s*([^\-]+)\s*-/;
-            const cleanPageTitle = pageTitle.match(regex)[1].trim();
-            console.log("Initial fetch for page " + cleanPageTitle || pageTitle);
+            console.log(pageTitle);
+            console.log(pageTitle.match(regex));
+            //const cleanPageTitle = pageTitle.match(regex)[1].trim();
+            //console.log("Initial fetch for page " + cleanPageTitle || pageTitle);
             fs.writeFileSync(
                 `${cleanPageTitle}.html`,
                 response.data
