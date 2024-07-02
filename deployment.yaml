@@ -23,5 +23,7 @@ spec:
               value: MOODLE_USER_SECRET_VALUE
             - name: MOODLE_PASSWORD
               value: MOODLE_PASSWORD_SECRET_VALUE
+            - name: API_ENDPOINT
+              value: API_ENDPOINT_VALUE
           ports:
             - containerPort: 3002

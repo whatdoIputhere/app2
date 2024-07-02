@@ -10,7 +10,7 @@ let _notifications = [];
 let _pageInfo = [];
 let _interval = 1000 * 30;
 let _intervalId = null;
-
+const apiEndpoint = `http://${process.env.API_ENDPOINT}:80`;
 async function startSession() {
     console.log("Getting client");
     try {
@@ -40,7 +40,7 @@ async function startSession() {
 async function getNotifications() {
     console.log("Getting notifications");
     try {
-        const response = await axios.get("http://localhost:3001/notification");
+        const response = await axios.get(apiEndpoint + "/notification");
         _notifications = response.data;
         for (const notification of _notifications) {
             const index = _pageInfo.findIndex((page) => page.url === notification.url);
