@@ -52,6 +52,7 @@ async function getNotifications() {
                 "title"
             ).textContent;
             let normalizedPage = normalizePage(response.data);
+            console.log("Initial fetch for page " = pageTitle);
             fs.writeFileSync(pageTitle + ".html", page.content);
 
             _pageInfo.push({
