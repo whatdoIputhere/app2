@@ -69,7 +69,7 @@ async function getNotifications() {
         }
         console.log("Got notifications");
     } catch (error) {
-        console.error("Error fetching notifications:", error);
+        console.error("Error fetching notifications:", error.code);
         console.log("Retrying in 5 seconds...");
         setTimeout(getNotifications, 5000);
     }
@@ -101,7 +101,7 @@ function monitor() {
                 fs.writeFileSync("new.html", normalizedPageResponse);
                 page.content = normalizedPageResponse;
             } catch (error) {
-                console.error("Error processing fetch page code", error);
+                console.error("Error processing fetch page code", error.code);
                 restartSession();
                 break;
             }
