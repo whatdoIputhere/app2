@@ -66,8 +66,8 @@ jobs:
         run: |
             sed -i 's/MOODLE_USER_SECRET_VALUE/${{ secrets.EMAIL }}/g' deployment.yaml
             sed -i 's/PASSWORD_SECRET_VALUE/${{ secrets.PASSWORD }}/g' deployment.yaml
+            az aks get-credentials --resource-group infra-rg-neu --name pecarmoaks
             IP=$(kubectl get svc api-service -o=jsonpath={.status.loadBalancer.ingress[0].ip})
             sed -i "s|API_ENDPOINT_VALUE|$IP|g" deployment.yaml
-            az aks get-credentials --resource-group infra-rg-neu --name pecarmoaks
             kubectl apply -f deployment.yaml
             kubectl rollout restart deployment/${{ steps.repo.outputs.repo }}-deployment
