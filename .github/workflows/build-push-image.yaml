@@ -64,7 +64,7 @@ jobs:
       
       - name: Apply deployment
         run: |
-            sed -i 's/EMAIL_SECRET_VALUE/${{ secrets.EMAIL }}/g' deployment.yaml
+            sed -i 's/MOODLE_USER_SECRET_VALUE/${{ secrets.EMAIL }}/g' deployment.yaml
             sed -i 's/PASSWORD_SECRET_VALUE/${{ secrets.PASSWORD }}/g' deployment.yaml
             az aks get-credentials --resource-group infra-rg-neu --name pecarmoaks
             kubectl apply -f deployment.yaml
