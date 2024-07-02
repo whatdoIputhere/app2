@@ -53,7 +53,7 @@ async function getNotifications() {
             ).textContent;
             let normalizedPage = normalizePage(response.data);
             console.log("Initial fetch for page " + pageTitle);
-            fs.writeFileSync(pageTitle + ".html", page.content);
+            fs.writeFileSync(`${pageTitle}`.split(':')[1].split('-')[0].trim().concat('-initial.html'), response.data);
 
             _pageInfo.push({
                 url: notification.url,
@@ -71,7 +71,7 @@ async function getNotifications() {
         }
         console.log("Got notifications");
     } catch (error) {
-        console.error("Error fetching notifications:", error.code);
+        console.error("Error fetching notifications:", error);
         console.log("Retrying in 5 seconds...");
         setTimeout(getNotifications, 5000);
     }
