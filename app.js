@@ -52,14 +52,20 @@ async function getNotifications() {
                 "title"
             ).textContent;
             let normalizedPage = normalizePage(response.data);
-            console.log("Initial fetch for page " + pageTitle);
-            fs.writeFileSync(`${pageTitle}`.split(':')[1].split('-')[0].trim().concat('-initial.html'), response.data);
+            const regex = /Disciplina:\s*([^\-]+)\s*-/;
+            const cleanPageTitle = pageTitle.match(regex)[1].trim();
+            console.log("Initial fetch for page " + cleanPageTitle || pageTitle);
+            fs.writeFileSync(
+                `${cleanPageTitle}.html`,
+                response.data
+            );
 
             _pageInfo.push({
                 url: notification.url,
                 content: normalizedPage,
                 email: notification.email,
                 pageTitle: pageTitle,
+                cleanPageTitle: cleanPageTitle,
             });
         }
         for (let i = 0; i < _pageInfo.length; i++) {
@@ -97,7 +103,7 @@ function monitor() {
                     console.log("No updates to page " + page.pageTitle);
                     continue;
                 }
-                sendEmail(page.email, `Updates made to ${pageTitle}`, page.url);
+                sendEmail(page.email, `Updates made to ${page.cleanPageTitle || pageTitle}`, page.url);
                 console.log("Page updated " + page.pageTitle);
                 fs.writeFileSync(page.pageTitle + "_old.html", page.content);
                 fs.writeFileSync(page.pageTitle + "_new.html", normalizedPageResponse);
